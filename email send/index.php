@@ -14,13 +14,13 @@ $mail = new PHPMailer(true);
 
 if(isset($_POST["btn"])){
 
-$usernmae = $_POST["username"];
+$username = $_POST["username"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 
 $code = rand(1000,9999);
 
-$_SESSION["username"] = $usernmae;
+$_SESSION["username"] = $username;
 $_SESSION["email"] = $email;
 $_SESSION["password"] = $password;
 $_SESSION["code"] = $code;
@@ -31,17 +31,17 @@ echo $username;
 echo "<br>";
 echo $email;
 echo "<br>";
-echo $password;
+// echo $password;
 
 
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'israttal22@gmail.com';                     //SMTP username
-    $mail->Password   = 'sjdc chok bkix zqll';                               //SMTP password
+    $mail->Username   = 'israattal22@gmail.com';                     //SMTP username
+    $mail->Password   = 'iugj lzip mlfs fcje'; //  iugj lzip mlfs fcj    //app password 
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -54,8 +54,8 @@ try {
     // $mail->addBCC('bcc@example.com');
 
     //Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
