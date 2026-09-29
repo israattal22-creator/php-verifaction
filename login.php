@@ -3,21 +3,22 @@
 session_start();
 
 if(isset($_SESSION["userid"])){
-    header("location:home.php");
+    header("Location:home.php");
 }
 
 include("connection.php");
 
 if(isset($_POST["btn"]))
 {
-    $emial = $_POST["emai"];
+    $email = $_POST["email"];
     $password = $_POST["password"];
 
 
 
     $fetchquery = "SELECT * FROM `users` WHERE `email` = :email";
+    $fetchprepare = $connect->prepare($fetchquery);
     $fetchprepare->bindParam(":email",$email,PDO::PARAM_STR);
-    $fetchprepare->excecute();
+    $fetchprepare->execute();
     $userData = $fetchprepare->fetch(PDO::FETCH_ASSOC);
 
 
@@ -26,15 +27,29 @@ if(isset($_POST["btn"]))
     echo "</pre>";
 
     if($userData){
+      
+    echo "<pre>";
+    print_r($userData);
+    echo "</pre>";
         $verifyuser = password_verify($password,$userData['password']);
+
+        if($verifyuser){
+          echo "login successfully";
+
 
         $_SESSION['userid'] = $userData['id'];
         $_SESSION['email'] = $userData['email'];
         $_SESSION['username'] = $userData['username'];
 
-        header("loction:home.php");
-
-    }
+        echo "<script>window.location.replace('home.php');</script>";
+    } 
+    else{
+      
+    echo "<pre>";
+    print_r($userData);
+    echo "</pre>";
+    }      
+   }
     else{
         echo"login failed";
     }
