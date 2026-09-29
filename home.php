@@ -3,8 +3,7 @@ session_start();
 
 
 if(isset($_SESSION["userid"])){
-    header("location:home.php");
-}
+    echo "<script>window.Location.replace('login.php');</script>";}
 
 if(isset($_POST['userid'])){
     session_destroy();
